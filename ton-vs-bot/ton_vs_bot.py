@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import datetime
 import json
 import os
@@ -59,25 +61,22 @@ def main():
     global CUR
 
     try:
-        if heroku:
-            bot_token = os.environ['bot_token']
-            db_uri = os.environ['DATABASE_URL']
-            sslmode = 'require'
-        else:
-            bot_token = __import__('gag_secrets').bot_token
-            db_uri = __import__('gag_secrets').db_uri
-            sslmode = None
-
+        # postgres creds
+        with open('/run/secrets/postgres_password', 'r') as f:
+            password = f.read()
+        db_uri = f'postgres://user1:{password}@postgres:5432/tonhelp'
+        
+        # init bot
+        with open('/run/secrets/telegram_token', 'r') as f:
+            bot_token = f.read()
         BOT = telegram.Bot(bot_token)
-
         tg_delay(log_chat_id)
         BOT.send_message(log_chat_id, start_message, disable_notification=True)
-
-        with psycopg2.connect(db_uri, sslmode=sslmode) as CON:
+        
+        with psycopg2.connect(db_uri) as CON:
             with CON.cursor() as CUR:
                 while True:
                     run()
-
     except:
         my_traceback(1)
 

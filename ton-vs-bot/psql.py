@@ -1,9 +1,11 @@
 import psycopg2
 
-# db_uri = ''
-# with psycopg2.connect(db_uri, sslmode='require') as con:
 
-with psycopg2.connect(__import__('gag_secrets').db_uri) as con:
+with open('/run/secrets/postgres_password', 'r') as f:
+    password = f.read()
+db_uri = f'postgres://user1:{password}@postgres:5432/tonhelp'
+
+with psycopg2.connect(db_uri) as con:
 
     with con.cursor() as cur:
         cur.execute('DROP TABLE IF EXISTS flood_control')
