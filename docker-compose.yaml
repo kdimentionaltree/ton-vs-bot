@@ -14,7 +14,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - net1
-  ton-vs-bot:
+  bot:
+    image: localhost:5000/ton-vs-bot:latest
     build:
       context: ton-vs-bot
       dockerfile: Dockerfile
