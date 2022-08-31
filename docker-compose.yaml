@@ -8,8 +8,28 @@ services:
       POSTGRES_DB: tonhelp
     ports:
       - 5432:5432
+    secrets:
+      - postgres_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - net1
+  ton-vs-bot:
+    build:
+      context: ton-vs-bot
+      dockerfile: Dockerfile
+    secrets:
+      - postgres_password
+      - telegram_token
+    networks:
+      - net1
 volumes:
   postgres_data:
     external: false
+networks:
+  net1:
+secrets:
+  postgres_password:
+    file: private/postgres_password
+  telegram_token:
+    file: private/telegram_token

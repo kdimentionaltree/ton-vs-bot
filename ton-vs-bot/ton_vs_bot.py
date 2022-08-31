@@ -12,6 +12,7 @@ import psycopg2
 import telegram
 
 from constants import *
+from psql import init_database
 from speaking import *
 from subjects import *
 
@@ -61,11 +62,12 @@ def main():
     global CUR
 
     try:
-        # postgres creds
+        # init postgres
         with open('/run/secrets/postgres_password', 'r') as f:
             password = f.read()
         db_uri = f'postgres://user1:{password}@postgres:5432/tonhelp'
-        
+        init_database(db_uri, drop_if_exists=False)
+
         # init bot
         with open('/run/secrets/telegram_token', 'r') as f:
             bot_token = f.read()
@@ -140,6 +142,8 @@ def handle_update(update):
         if channel_post.chat.id == channel_chat_id or channel_post.chat.id in subjects_channels.values():
             pass
         else:
+            log_mgs = f'Leaving channel: {channel_post.chat.id}'
+            BOT.send_message(log_chat_id, log_mgs, disable_notification=True)
             BOT.leave_chat(channel_post.chat.id)
         return
     else:
@@ -153,6 +157,8 @@ def handle_update(update):
 
     if message.chat.id < 0 and message.chat.id not in {channel_chat_id, group_chat_id, log_chat_id}:
         if not message.left_chat_member:
+            log_mgs = f'Leaving channel: {message.chat.id}'
+            BOT.send_message(log_chat_id, log_mgs, disable_notification=True)
             BOT.leave_chat(message.chat.id)
         return
 
@@ -2927,5 +2933,6 @@ def my_traceback(level, additional_information=None, update=None):
     sleep(2 ** SHIT_COUNTER)
     SHIT_COUNTER += 1
 
-
-gaga()
+if __name__ == '__main__':
+    print('RUNNING BOT')
+    gaga()
