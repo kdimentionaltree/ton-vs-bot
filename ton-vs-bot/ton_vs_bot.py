@@ -75,7 +75,7 @@ def main():
         tg_delay(log_chat_id)
         BOT.send_message(log_chat_id, start_message, disable_notification=True)
         
-        with psycopg2.connect(db_uri) as CON:
+        with psycopg2.connect(db_uri, keepalives=1, keepalives_idle=5, keepalives_interval=5, keepalives_count=3) as CON:
             with CON.cursor() as CUR:
                 while True:
                     run()

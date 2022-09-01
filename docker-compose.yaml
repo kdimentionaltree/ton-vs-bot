@@ -15,7 +15,7 @@ services:
     networks:
       - net1
   bot:
-    image: localhost:5000/ton-vs-bot:latest
+    image: localhost:5000/ton-vs-bot:v0.1
     build:
       context: ton-vs-bot
       dockerfile: Dockerfile
@@ -24,6 +24,24 @@ services:
       - telegram_token
     networks:
       - net1
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+  daily-stats:
+    image: localhost:5000/ton-vs-daily-stat-bot:v0.1
+    build:
+      context: ton-vs-daily-stat-bot
+      dockerfile: Dockerfile
+    secrets:
+      - postgres_password
+      - stats_telegram_token
+    networks:
+      - net1
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
 volumes:
   postgres_data:
     external: false
@@ -34,3 +52,5 @@ secrets:
     file: private/postgres_password
   telegram_token:
     file: private/telegram_token
+  stats_telegram_token:
+    file: private/stats_telegram_token
