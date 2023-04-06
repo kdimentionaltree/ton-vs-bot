@@ -12,15 +12,15 @@ speaking_dict = {
     'greeting_message': {
         'eng': '👋\n'
                '\n'
-               'Welcome to the TON Foundation Support\.\n'
+               'Welcome to TON Foundation Support\.\n'
                '\n'
-               'We have a small team, and there are a lot of requests, so we cannot respond quickly or sometimes respond at all\.\n'
+               'We have a small team, and there are a lot of requests, so please bear with us as we try to respond ASAP\. Sometimes due to heavy demand, we aren’t able to respond at all\.\n'
                '\n'
-               'Please consider supporting us by sending some Toncoins\. You can send a check in this chat using [@CryptoBot](http://t.me/CryptoBot?start=r-2951) or @wallet, or ask for a Toncoin\-wallet address for donation\.\n'
+               'If you support the TON ecosystem by donating Toncoin it is an excellent opportunity to learn about that very same ecosystem\. You can send coins through this chat using [@CryptoBot](http://t.me/CryptoBot?start=r-2951) or @wallet, or ask for a Toncoin\-wallet address for donation\. But it’s entirely optional\!\n'
                '\n'
-               'To contact us just write \(edit\) your messages here as in an ordinary chat\.\n'
+               'To contact us, just write \(edit\) your messages here as in an ordinary chat\.\n'
                '\n'
-               'You can use English and Russian languages\.\n',
+               'You can write in English and in Russian\.\n',
         # 'rus': '👋\n'
         #        '\n'
         #        'Приветствуем вас в поддержке TON Foundation.\n'
