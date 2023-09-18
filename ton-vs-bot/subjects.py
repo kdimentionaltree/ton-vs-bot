@@ -15,6 +15,9 @@ subjects_dict = {
         'FTX': None,
         'OKX': None,
     },
+    'sites': {
+        'ton.org': None,
+    },
     'TON DNS': None,
     'validation': {
         'mytonctrl': None,

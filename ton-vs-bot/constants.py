@@ -10,7 +10,8 @@ if heroku:
         '': -1001728100350,
         'bridges': -1001662417884,
         'validation/mytonctrl': -1001725731982,
-        'wallets/web wallet': -1001763943139
+        'wallets/web wallet': -1001763943139,
+        'sites/ton.org': -1001812605218,
     }
 
 else:
