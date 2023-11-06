@@ -45,7 +45,7 @@ def gaga():
                            f'\n' \
                            f'{traceback.format_exc()}'
             print(shit_message + separator)
-            sleep(2 ** SHIT_COUNTER)
+            sleep(10)
             SHIT_COUNTER += 1
 
 
@@ -2930,7 +2930,7 @@ def my_traceback(level, additional_information=None, update=None):
 
         print(exception_in_my_traceback_message + separator)
 
-    sleep(2 ** SHIT_COUNTER)
+    sleep(10)
     SHIT_COUNTER += 1
 
 if __name__ == '__main__':
