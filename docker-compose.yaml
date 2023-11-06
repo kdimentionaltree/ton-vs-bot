@@ -15,7 +15,7 @@ services:
     networks:
       - net1
   bot:
-    image: ${DOCKER_REGISTRY:-localhost:5000}/ton-vs-bot:v0.1
+    image: ${DOCKER_REGISTRY:-localhost:5000}/ton-vs-bot:v0.2
     build:
       context: ton-vs-bot
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
         condition: on-failure
         delay: 5s
   daily-stats:
-    image: ${DOCKER_REGISTRY:-localhost:5000}/ton-vs-bot-daily-stat:v0.1
+    image: ${DOCKER_REGISTRY:-localhost:5000}/ton-vs-bot-daily-stat:v0.2
     build:
       context: ton-vs-daily-stat-bot
       dockerfile: Dockerfile
